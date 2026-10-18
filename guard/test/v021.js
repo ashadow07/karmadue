@@ -1,0 +1,34 @@
+"use strict";
+// 0.2.1 checks with no network: private names never sent, transitive pre-rule, trap test lines printed not run, cache hit.
+const fs = require("fs"), os = require("os"), path = require("path"), http = require("http");
+const { run, check, done } = require("./helpers");
+(async () => {
+  const seen = [];
+  const srv = http.createServer((req, res) => { let b = ""; req.on("data", (d) => (b += d)); req.on("end", () => { seen.push(JSON.parse(b || "{}")); res.setHeader("content-type", "application/json"); res.end(JSON.stringify({ ok: true, data: { decision: "no_known_issues", enforce: "proceed_with_care", headline: "No advisories." }, request_id: "r1" })); }); });
+  await new Promise((r) => srv.listen(0, r));
+  const API = `http://127.0.0.1:${srv.address().port}`;
+  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "kd-priv-"));
+  fs.writeFileSync(path.join(cwd, ".npmrc"), "@acme:registry=https://npm.acme.internal/\n");
+  process.chdir(cwd);
+  let o = await run(["check", "npm install @acme/secret@1.0.0 is-number@7.0.0"], { KARMADUE_API: API, KARMADUE_DETAIL: "" });
+  check("private scope from .npmrc never sent", !seen.some((x) => /acme/.test(x.target)) && seen.some((x) => /is-number/.test(x.target)) && /never sent/.test(o.err), JSON.stringify(seen) + o.err);
+  seen.length = 0;
+  o = await run(["check", "pip install --index-url https://pypi.corp/simple corp-pkg"], { KARMADUE_API: API, KARMADUE_DETAIL: "" });
+  check("custom pip index: nothing sent", seen.length === 0 && /custom package index/.test(o.err), o.err);
+  o = await run(["check", "npm install corp-pkg"], { KARMADUE_API: API, KARMADUE_DETAIL: "", npm_config_registry: "https://npm.corp/" });
+  check("custom npm registry (env): nothing sent", seen.length === 0, JSON.stringify(seen));
+  o = await run(["check", "pip install 'passlib[bcrypt]==1.7.4'"], { KARMADUE_API: API, KARMADUE_DETAIL: "" });
+  check("transitive rule: passlib without bcrypt<5 flagged", /passlib -> bcrypt/.test(o.err), o.err);
+  o = await run(["check", "pip install 'passlib[bcrypt]==1.7.4' 'bcrypt<5'"], { KARMADUE_API: API, KARMADUE_DETAIL: "" });
+  check("transitive rule: quiet when bcrypt<5 pinned", !/transitive rule/.test(o.err), o.err);
+  const marker = path.join(cwd, "RAN");
+  o = await run(["check", "pip install sklearn"], { KARMADUE_API: API, KARMADUE_DETAIL: "" });
+  check("trap test printed, never executed", /test \(printed, not run\)/.test(o.err) && !fs.existsSync(marker), o.err);
+  const home = fs.mkdtempSync(path.join(os.tmpdir(), "kd-c-")); seen.length = 0;
+  await run(["check", "npm install is-number@7.0.0"], { KARMADUE_API: API, KARMADUE_DETAIL: "", KARMADUE_NO_CACHE: "", KARMADUE_HOME: home });
+  o = await run(["check", "npm install is-number@7.0.0"], { KARMADUE_API: API, KARMADUE_DETAIL: "", KARMADUE_NO_CACHE: "", KARMADUE_HOME: home });
+  check("cache: second check makes no request", seen.length === 1 && /cached/.test(o.err), seen.length + o.err);
+  o = await run(["check", "npm install is-number@7.0.0"], { KARMADUE_API: "http://127.0.0.1:9", KARMADUE_DETAIL: "", KARMADUE_NO_CACHE: "", KARMADUE_HOME: home });
+  check("cache: hit works with API down", /ok is-number/.test(o.err), o.err);
+  srv.close(); done();
+})();

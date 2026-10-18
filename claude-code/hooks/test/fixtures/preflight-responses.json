@@ -1,0 +1,204 @@
+{
+ "captured_from": "https://ogogoizwsfaduzehkshb.supabase.co/functions/v1/public-api/v1/preflight",
+ "captured_at": "2026-10-11T21:06:22.557Z",
+ "hook_version": "1.1.0",
+ "responses": {
+  "npm:event-stream@3.3.6": {
+   "ok": true,
+   "data": {
+    "decision": "deny",
+    "enforce": "block",
+    "headline": "Do not install event-stream@3.3.6.",
+    "reasons": [
+     "Malicious-package report GHSA-mh6f-8j2x-4483 covers event-stream@3.3.6: CWE-506 (embedded malicious code): Critical severity vulnerability that affects event-stream and flatmap-stream."
+    ],
+    "scope": {
+     "target": "npm:event-stream@3.3.6",
+     "action": "install_connector",
+     "action_class": "install",
+     "checked": [
+      "npm registry: package exists, version 3.3.6 not published",
+      "OSV advisories and OpenSSF malicious-package reports for event-stream@3.3.6"
+     ]
+    },
+    "evidence": [
+     {
+      "kind": "malware_report",
+      "ref": "https://osv.dev/vulnerability/GHSA-mh6f-8j2x-4483"
+     }
+    ],
+    "gaps": [
+     "no KarmaDue catalog record, so nothing beyond the registry and advisory feeds was assessed",
+     "behaviour at run time is never observed by this check",
+     "3 catalog suggestions were dropped: no functional overlap with this target could be shown. Pass task to find_alternatives for a targeted search."
+    ],
+    "alternatives": [],
+    "evidence_url": "https://karmadue.expo.app/passport/npm:event-stream@3.3.6"
+   },
+   "error": null,
+   "response": "compact (pass verbose true for claims, warnings and provenance)"
+  },
+  "npm:postmark-mcp@1.0.18": {
+   "ok": true,
+   "data": {
+    "decision": "deny",
+    "enforce": "block",
+    "headline": "Do not install postmark-mcp@1.0.18.",
+    "reasons": [
+     "Malicious-package report MAL-2025-47604 covers postmark-mcp@1.0.18: This package turned malicious in v1.0.16 and exfiltrates email data via BCC."
+    ],
+    "scope": {
+     "target": "npm:postmark-mcp@1.0.18",
+     "action": "install_connector",
+     "action_class": "install",
+     "checked": [
+      "npm registry: no such package, version 1.0.18 not published",
+      "OSV advisories and OpenSSF malicious-package reports for postmark-mcp@1.0.18"
+     ]
+    },
+    "evidence": [
+     {
+      "kind": "malware_report",
+      "ref": "https://osv.dev/vulnerability/MAL-2025-47604"
+     }
+    ],
+    "gaps": [
+     "no KarmaDue catalog record, so nothing beyond the registry and advisory feeds was assessed",
+     "behaviour at run time is never observed by this check"
+    ],
+    "alternatives": [
+     {
+      "name": "ActiveCampaign/postmark-mcp",
+      "kind": "similar",
+      "why": "shares: postmark, email, transactional. Not checked as a drop-in replacement.",
+      "ref": "https://karmadue.expo.app/passport/kd:res:github:ActiveCampaign/postmark-mcp"
+     },
+     {
+      "name": "codefuturist/email-mcp",
+      "kind": "similar",
+      "why": "shares: email, smtp. Not checked as a drop-in replacement.",
+      "ref": "https://karmadue.expo.app/passport/kd:res:github:codefuturist/email-mcp"
+     },
+     {
+      "name": "Easy Email Builder",
+      "kind": "similar",
+      "why": "shares: email. Not checked as a drop-in replacement.",
+      "ref": "https://karmadue.expo.app/passport/kd:res:mcp:io.github.Shahkarkhan440/easy-email-builder"
+     }
+    ],
+    "evidence_url": "https://karmadue.expo.app/passport/npm:postmark-mcp@1.0.18"
+   },
+   "error": null,
+   "response": "compact (pass verbose true for claims, warnings and provenance)"
+  },
+  "pypi:jinja2==2.11.2": {
+   "ok": true,
+   "data": {
+    "decision": "warn",
+    "enforce": "require_human_approval",
+    "headline": "Caution: jinja2==2.11.2 has a current warning. Ask your person before you do this.",
+    "reasons": [
+     "10 published advisories affect jinja2@2.11.2. Fixed in 3.1.6."
+    ],
+    "scope": {
+     "target": "pypi:jinja2==2.11.2",
+     "action": "install_connector",
+     "action_class": "install",
+     "checked": [
+      "pypi registry: package exists, version 2.11.2 published",
+      "OSV advisories and OpenSSF malicious-package reports for jinja2==2.11.2"
+     ]
+    },
+    "evidence": [
+     {
+      "kind": "advisory",
+      "ref": "https://osv.dev/vulnerability/PYSEC-2026-1475"
+     },
+     {
+      "kind": "advisory",
+      "ref": "https://osv.dev/vulnerability/GHSA-g3rq-g295-4j3m"
+     }
+    ],
+    "gaps": [
+     "no KarmaDue catalog record, so nothing beyond the registry and advisory feeds was assessed",
+     "behaviour at run time is never observed by this check"
+    ],
+    "alternatives": [
+     {
+      "name": "pypi:jinja2==3.1.6",
+      "kind": "fixed_version",
+      "why": "Same package. 3.1.6 is the lowest release above 2.11.2 that no advisory or malicious-package report KarmaDue holds covers.",
+      "ref": ""
+     },
+     {
+      "name": "Formfeed",
+      "kind": "similar",
+      "why": "shares: jinja2. Not checked as a drop-in replacement.",
+      "ref": "https://karmadue.expo.app/passport/kd:res:api:docs-formfeed-dev-api-overview"
+     }
+    ],
+    "evidence_url": "https://karmadue.expo.app/passport/pypi:jinja2%3D%3D2.11.2"
+   },
+   "error": null,
+   "response": "compact (pass verbose true for claims, warnings and provenance)"
+  },
+  "npm:is-number@7.0.0": {
+   "ok": true,
+   "data": {
+    "decision": "no_known_issues",
+    "enforce": "proceed_with_care",
+    "headline": "No known issues for is-number@7.0.0; not safety-reviewed. Go ahead with normal care; nothing here is a safety guarantee.",
+    "reasons": [
+     "No advisory or malicious-package report covers is-number@7.0.0, but no one has done a safety review of it."
+    ],
+    "scope": {
+     "target": "npm:is-number@7.0.0",
+     "action": "install_connector",
+     "action_class": "install",
+     "checked": [
+      "npm registry: package exists, version 7.0.0 published",
+      "OSV advisories and OpenSSF malicious-package reports for is-number@7.0.0"
+     ]
+    },
+    "evidence": [],
+    "gaps": [
+     "no KarmaDue catalog record, so nothing beyond the registry and advisory feeds was assessed",
+     "behaviour at run time is never observed by this check"
+    ],
+    "alternatives": [],
+    "evidence_url": "https://karmadue.expo.app/passport/npm:is-number@7.0.0"
+   },
+   "error": null,
+   "response": "compact (pass verbose true for claims, warnings and provenance)"
+  },
+  "npm:kd-hook-test-nonexistent-7f3a9c@1.0.0": {
+   "ok": true,
+   "data": {
+    "decision": "unverified_existence",
+    "enforce": "require_human_approval",
+    "headline": "Cannot establish that kd-hook-test-nonexistent-7f3a9c exists on npm. Ask your person before you do this.",
+    "reasons": [
+     "Cannot establish that kd-hook-test-nonexistent-7f3a9c exists: the npm registry has no package with that name. A name that does not exist can be registered later by anyone (slopsquatting). This is not a malware finding."
+    ],
+    "scope": {
+     "target": "npm:kd-hook-test-nonexistent-7f3a9c@1.0.0",
+     "action": "install_connector",
+     "action_class": "install",
+     "checked": [
+      "npm registry: no such package, version 1.0.0 not checked",
+      "OSV advisories and OpenSSF malicious-package reports for kd-hook-test-nonexistent-7f3a9c@1.0.0"
+     ]
+    },
+    "evidence": [],
+    "gaps": [
+     "no KarmaDue catalog record, so nothing beyond the registry and advisory feeds was assessed",
+     "behaviour at run time is never observed by this check"
+    ],
+    "alternatives": [],
+    "evidence_url": "https://karmadue.expo.app/passport/npm:kd-hook-test-nonexistent-7f3a9c@1.0.0"
+   },
+   "error": null,
+   "response": "compact (pass verbose true for claims, warnings and provenance)"
+  }
+ }
+}

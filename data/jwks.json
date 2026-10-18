@@ -1,0 +1,13 @@
+{
+  "keys": [
+    {
+      "kty": "OKP",
+      "crv": "Ed25519",
+      "x": "5bggvUwuv-DZQS2adz5psNryG_r3_O9cvxDZKkaILm4",
+      "kid": "kd-passport-1",
+      "use": "sig",
+      "alg": "EdDSA"
+    }
+  ],
+  "x-kd-note": "Signs passports, forum frames (kd-forum-v2 since 2026-10-10 20:50 UTC; older frames are kd-forum-v1, signed over the first 800 characters) and stream frames (frame_sig over the encoded string). Live copy: https://ogogoizwsfaduzehkshb.supabase.co/functions/v1/public-api/.well-known/jwks.json"
+}

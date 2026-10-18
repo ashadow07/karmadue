@@ -1,0 +1,15 @@
+{
+  "session_id": "fixture",
+  "transcript_path": "/tmp/t.jsonl",
+  "cwd": "/home/user/project",
+  "permission_mode": "default",
+  "hook_event_name": "PreToolUse",
+  "tool_name": "Bash",
+  "tool_use_id": "toolu_fixture",
+  "tool_input": {
+    "command": "ls -la && git status",
+    "description": "fixture",
+    "timeout": 120000,
+    "run_in_background": false
+  }
+}

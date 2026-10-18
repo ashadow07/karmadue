@@ -1,0 +1,85 @@
+{
+ "note": "Old (v1) reply format, data.install_decision. npm:postmark-mcp@1.0.18 is the real capture from 2026-10-11 (before the format change). The jinja2 and is-number entries were reconstructed in the v1 shape from the live data of 2026-10-11 ~17:20 ET, for the backward-compatibility tests only.",
+ "responses": {
+  "npm:postmark-mcp@1.0.18": {
+   "ok": true,
+   "data": {
+    "install_decision": {
+     "method": "install-decision@1: OpenSSF/OSV malicious-package reports and advisories for the exact version (OSV read for that version when available, otherwise affected ranges), plus KarmaDue's confirmed public refusals.",
+     "package": "postmark-mcp",
+     "decision": "deny",
+     "ecosystem": "npm",
+     "decision_line": "Malicious-package report MAL-2025-47604 covers postmark-mcp@1.0.18: This package turned malicious in v1.0.16 and exfiltrates email data via BCC.",
+     "version_checked": "1.0.18",
+     "malicious_reports": [
+      {
+       "url": "https://osv.dev/vulnerability/MAL-2025-47604",
+       "detail": "This package turned malicious in v1.0.16 and exfiltrates email data via BCC.",
+       "advisory_id": "MAL-2025-47604"
+      }
+     ],
+     "version_requested": "1.0.18",
+     "exact_version_read": true
+    },
+    "alternatives": [
+     {
+      "title": "ActiveCampaign/postmark-mcp",
+      "resource_id": "kd:res:github:ActiveCampaign/postmark-mcp",
+      "passport": "https://karmadue.expo.app/passport/kd:res:github:ActiveCampaign/postmark-mcp",
+      "why_suggested": "shares postmark, email, transactional in its name or description; same ecosystem (npm); 57 GitHub stars; pushed in the last 90 days.",
+      "recipe": {
+       "url": "https://karmadue.expo.app/r/recipe:01239d24-5440-4c8d-8a95-da9d4c71752c",
+       "title": "Official Postmark MCP 2.1.1 (npx) in Claude Desktop or Cursor"
+      }
+     },
+     {
+      "title": "codefuturist/email-mcp",
+      "resource_id": "kd:res:github:codefuturist/email-mcp",
+      "passport": "https://karmadue.expo.app/passport/kd:res:github:codefuturist/email-mcp",
+      "why_suggested": "shares email, smtp in its name or description; same ecosystem (npm); 127 GitHub stars; pushed in the last 90 days."
+     },
+     {
+      "title": "Easy Email Builder",
+      "resource_id": "kd:res:mcp:io.github.Shahkarkhan440/easy-email-builder",
+      "passport": "https://karmadue.expo.app/passport/kd:res:mcp:io.github.Shahkarkhan440/easy-email-builder",
+      "why_suggested": "shares email in its name or description; same ecosystem (npm)."
+     }
+    ]
+   }
+  },
+  "pypi:jinja2==2.11.2": {
+   "ok": true,
+   "data": {
+    "install_decision": {
+     "package": "jinja2",
+     "ecosystem": "pypi",
+     "decision": "warn",
+     "version_checked": "2.11.2",
+     "decision_line": "10 published advisories affect jinja2@2.11.2. Fixed in 3.1.6.",
+     "advisories": [
+      {
+       "advisory_id": "PYSEC-2026-1475"
+      },
+      {
+       "advisory_id": "GHSA-g3rq-g295-4j3m"
+      }
+     ]
+    },
+    "alternatives": []
+   }
+  },
+  "npm:is-number@7.0.0": {
+   "ok": true,
+   "data": {
+    "install_decision": {
+     "package": "is-number",
+     "ecosystem": "npm",
+     "decision": "allow",
+     "version_checked": "7.0.0",
+     "decision_line": "No malicious report, confirmed refusal or known advisory for is-number@7.0.0. Not a safety guarantee."
+    },
+    "alternatives": []
+   }
+  }
+ }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "karmadue-guard",
+  "version": "0.4.0",
+  "description": "PinTree guard: known install traps with tested fixes, plus a safety check, before npm/npx/pnpm/yarn/pip/uv installs run. No account, no dependencies.",
+  "bin": {
+    "karmadue-guard": "karmadue-guard.js"
+  },
+  "files": [
+    "karmadue-guard.js",
+    "lib/karmadue-preinstall.js",
+    "lib/provenance.js",
+    "README.md",
+    "LICENSE",
+    "traps.json",
+    "traps.sha256"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {},
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashadow07/karmadue.git",
+    "directory": "guard"
+  },
+  "homepage": "https://karmadue.expo.app/docs/any-agent.html",
+  "keywords": [
+    "supply-chain",
+    "npm",
+    "pip",
+    "agents",
+    "mcp",
+    "security"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "karmadue": {
+      "type": "http",
+      "url": "https://karmadue--mcp.expo.app/mcp"
+    }
+  }
+}
