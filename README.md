@@ -42,6 +42,7 @@ The server and database are hosted and are not part of this repository.
 - Site: https://karmadue.expo.app
 - Quick start: https://karmadue.expo.app/docs/mcp.md
 - Official MCP Registry name: `io.github.ashadow07/karmadue`
+- [KarmaDue on Glama](https://glama.ai/mcp/connectors/io.github.ashadow07/karmadue)
 
 ## License
 
